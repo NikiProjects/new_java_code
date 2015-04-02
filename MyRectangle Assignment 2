@@ -1,0 +1,186 @@
+package packdrawings;
+
+
+import java.awt.Color;
+import java.awt.Graphics;
+public class MyRectangle 
+{
+
+// A rectangle is drawn by specifying 4 coordinates.     
+    private int rectX1; 
+    private int rectY1; 
+    private int rectX2; 
+    private int rectY2; 
+    private Color color2;
+    private boolean rectFilled;
+
+    public MyRectangle(int rectX1, int rectY1, int rectX2, int rectY2, Color color2, boolean rectFilled)
+    {
+ 
+        setRectX1(rectX1);
+        setRectY1(rectY1);
+        setRectX2(rectX2);
+        setRectY2(rectY2);
+    
+        setColorRect(color2);
+        setRectFlag(rectFilled);
+    }
+
+    public MyRectangle()
+    {     
+        setRectX1To0(); 
+        setRectY1To0();
+        setRectX2To0();
+        setRectY2To0();
+        setRectColorBlack();
+        setRectFlagFalse();
+
+    }
+// An advantage of using set methods is that you can validate the value of an argument. 
+
+    public void setRectX1(int rectX1)
+    {
+        this.rectX1 = rectX1;
+           
+        if(rectX1 < 0)
+            this.rectX1 = 0;
+    }     
+
+    public void setRectX1To0()
+    {
+        rectX1 = 0;      
+    }      
+
+    public void setRectY1(int rectY1)
+    {
+        this.rectY1 = rectY1;
+        if(rectY1 < 0)
+            this.rectY1 = 0;
+    }   
+
+    public void setRectY1To0()
+    {     
+        rectY1 = 0;  
+    }
+
+    public void setRectX2(int rectX2)
+    {
+        this.rectX2 = rectX2;        
+            if(rectX2 < 0)
+                this.rectX2 = 0;
+    } 
+
+    public void setRectX2To0()
+    {     
+        rectX2 = 0;
+    }    
+
+    public void setRectY2(int rectY2)
+    {
+        this.rectY2 = rectY2;      
+        if(rectY2 < 0)
+            this.rectY2 = 0;
+    }   
+
+    public void setRectY2To0()
+    {
+        rectY2 = 0;    
+    }     
+
+    public void setColorRect(Color color2)
+    {
+        this.color2 = color2;      
+    }      
+
+    public void setRectColorBlack()
+    {
+        this.color2 = Color.BLACK;    
+    }
+
+    public void setRectFlag(boolean rectFilled)
+    {
+        this.rectFilled = rectFilled;
+    }   
+
+    public void setRectFlagFalse()
+    {
+        this.rectFilled = false;
+    }
+    
+    public void setRectFlagTrue()
+    { 
+      this.rectFilled = true;
+    }
+
+// The upper left x-coordinate of the rectangle is defined by comparing the value of the two x coordinates 
+//declared above as instance variables..
+    public int getUpperLeftX_Rect()
+    {
+        int upperLeftX_Rect = 0;    
+
+        if(rectX1 < rectX2)
+            upperLeftX_Rect = rectX1;
+
+        if(rectX2 < rectX1)
+            upperLeftX_Rect = rectX2;  
+    
+        return upperLeftX_Rect;
+   
+    }
+// The upper left y-coordinate of the rectangle is defined by comparing the value of the two y coordinates 
+//declared above as instance variables. 
+    public int getUpperLeftY_Rect()
+    {
+        int upperLeftY_Rect = 0;
+    
+        if(rectY1 < rectY2)
+            upperLeftY_Rect = rectY1;
+        if(rectY2 < rectY1)
+            upperLeftY_Rect = rectY2;
+   
+        return upperLeftY_Rect;
+    }
+
+// The width of the rectangle is obtainted by obtaining the absolute value of the difference between the two 
+//x coordinates. 
+    public int getWidth_Rect()
+    {        
+        int width_Rect = 0;
+    
+        width_Rect = Math.abs(rectX2 - rectX1);
+ 
+        return width_Rect;
+   
+    }
+
+// The height of the rectangle is obtained by obtaining the absolute value of the difference between the two 
+//y coordinates  
+    public int getHeight_Rect()
+    {
+        int height_Rect = 0;
+
+        height_Rect = Math.abs(rectY2 - rectY1);
+
+        return height_Rect;
+    }    
+       
+// Below, the arguments of methods drawRect and fillRect are specified by calling get methods.  
+    public void drawRect(Graphics g1)
+    {
+  
+        g1.setColor(color2);
+        g1.drawRect(getUpperLeftX_Rect(), getUpperLeftY_Rect(), getWidth_Rect(), getHeight_Rect());
+        g1.fillRect(getUpperLeftX_Rect(),getUpperLeftY_Rect(), getWidth_Rect(), getHeight_Rect());
+        rectFilled = true;
+//Once program control executes the statements in the drawRect method, this shape is filled and the flag that indicates 
+  //whether the shape is filled is set to true.   
+//This flag does not get set to true until method drawRect has finished exececuting it's statements. 
+//Methods drawRect and fillRect belong to class Graphics. 
+
+    }
+
+
+
+
+
+}
