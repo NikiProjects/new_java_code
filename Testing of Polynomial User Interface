@@ -1,0 +1,21 @@
+package packPolynomial;
+
+/**
+ *
+ * @author Jaya
+ */
+public class PolynomialTest {
+
+// Method main from class PolynomialUI is static. So code within class PolynomialUI's method main can be accessed
+// by writing class name dot method name. 
+// Statement below tests for the functionality of all methods declared in the class PolynomialUI.      
+public static void main(String[] args)
+{
+    
+     PolynomialUI.main(args);
+
+
+ }
+  
+
+                            }
