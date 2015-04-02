@@ -1,0 +1,60 @@
+package packExtraCredit;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
+
+/**
+ *
+ * @author Jaya
+ */
+public class MyLine1 extends MyShape 
+{
+
+    
+    public MyLine1(int X1, int Y1, int X2, int Y2, Color color1)
+    {
+// Statement below calls the constructor of the parent class to intialize instance variables.    
+        super(X1, Y1, X2, Y2, color1);
+    }
+
+    public MyLine1()
+    {
+// Statement below invokes the superclass constructor which takes no arguements.
+        
+        super();
+    }
+
+
+
+// Methods below provide implemenation of the abstract methods declared in class MyShape. 
+// Methods below call methods of the Graphics class. 
+// For example drawLine is a method that belongs to the Graphics class. 
+        
+    public void draw(Graphics g1)
+    {       
+        g1.setColor(getShapeColor());
+        g1.drawLine(getShapeX1(), getShapeY1(), getShapeX2(), getShapeY2());
+ 
+    }
+   
+    public void draw1(Graphics g1)
+    {       
+        g1.setColor(getShapeColor());
+        g1.drawLine(getShapeX1(), getShapeY1(), getShapeX2(), getShapeY2());
+ 
+    }
+
+    public void draw2(Graphics g1)
+    {
+        g1.setColor(getShapeColor());
+        g1.drawLine(getShapeX1(), getShapeY1(), getShapeX2(), getShapeY2());
+    }    
+
+    public void draw3(Graphics g1)
+    {
+        g1.setColor(getShapeColor());
+        g1.drawLine(getShapeX1(), getShapeY1(), getShapeX2(), getShapeY2());
+    }    
+
+}
