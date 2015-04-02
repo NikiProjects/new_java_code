@@ -1,0 +1,30 @@
+package packdrawings;
+
+import javax.swing.JFrame;
+
+/**
+ *
+ * @author Jaya
+ */
+public class TestDrawShapes 
+{
+    
+    public static void main(String[] args)
+        {
+// Statements below instantiate the classes DrawPanel, and JFrame. 
+// JFrame is a container that can hold container JPanel. 
+            DrawPanel panel = new DrawPanel();      
+            JFrame app = new JFrame();
+      
+            app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            app.add(panel);
+            app.setSize(300, 300);
+            app.setVisible(true);
+         } 
+
+
+
+
+
+
+                            }
