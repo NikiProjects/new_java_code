@@ -1,0 +1,173 @@
+package packdrawings;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
+/**
+ *
+ * @author Jaya
+ */
+public class MyOval 
+{
+    private int ovalX1; 
+    private int ovalY1; 
+    private int ovalX2; 
+    private int ovalY2; 
+    private Color color1;
+    private boolean ovalFilled;    
+
+
+// Constructor below does not call a superclass constructor. So there is no issue of superclass constructor 
+//  calling a method that is overrideable.
+// So there's no issue of calling a subclass method before intitialization can take place.  
+    public MyOval(int ovalX1, int ovalY1, int ovalX2, int ovalY2, Color color1, boolean ovalFilled)
+    {
+        setOvalX1(ovalX1);
+        setOvalY1(ovalY1);
+        setOvalX2(ovalX2);
+        setOvalY2(ovalY2);
+   
+        setColorOval(color1);
+        setOvalFlag(ovalFilled);
+    }
+
+    public MyOval()
+    {
+        setOvalX1To0(); 
+        setOvalY1To0();
+        setOvalX2To0();
+        setOvalY2To0();
+        setOvalColorBlack();
+        setOvalFlagFalse();  
+    }
+
+    public void setOvalX1(int ovalX1)
+    {
+        this.ovalX1 = ovalX1;      
+        if(ovalX1 < 0)
+          this.ovalX1 = 0;
+    }     
+
+    public void setOvalX1To0()
+    {
+        ovalX1 = 0;      
+    }    
+    
+    public void setOvalY1(int ovalY1)
+    {  
+        this.ovalY1 = ovalY1;    
+        if(ovalY1 < 0)
+          this.ovalY1 = 0;
+    }  
+
+    public void setOvalY1To0()
+    {     
+         ovalY1 = 0;  
+    }
+
+    public void setOvalX2(int ovalX2)
+    {
+        this.ovalX2 = ovalX2;     
+        if(ovalX2 < 0)
+            this.ovalX2 = 0;
+    }     
+
+    public void setOvalX2To0()
+    {     
+        ovalX2 = 0;
+    } 
+
+    public void setOvalY2(int ovalY2)
+    {    
+        this.ovalY2 = ovalY2;
+        if(ovalY2 < 0)
+            this.ovalY2 = 0;
+    }
+
+    public void setOvalY2To0()
+    {
+        ovalY2 = 0;    
+    }     
+
+    public void setColorOval(Color color1)
+    {
+        this.color1 = color1;      
+    }    
+
+    public void setOvalColorBlack()
+    {
+        this.color1 = Color.BLACK;    
+    }
+
+    public void setOvalFlag(boolean ovalFilled)
+    {
+        this.ovalFilled = ovalFilled;
+    }   
+
+    public void setOvalFlagFalse()
+    {
+        this.ovalFilled = false;
+    }
+    
+    public void setOvalFlagTrue()
+    {
+        this.ovalFilled = true;
+    }
+
+// Same arguments should be defined for drawing an oval. The drawOval and fillOval methods take arguments of 
+//upper left x, upper left y, width, and height. 
+    public int getUpperLeftX_Oval()
+    {
+        int upperLeftX_Oval = 0;    
+        if(ovalX1 < ovalX2)
+        upperLeftX_Oval = ovalX1;
+    
+        if(ovalX2 < ovalX1)
+            upperLeftX_Oval = ovalX2;  
+    
+        return upperLeftX_Oval;
+    }
+
+    public int getUpperLeftY_Oval()
+    {
+        int upperLeftY_Oval = 0;
+    
+        if(ovalY1 < ovalY2)
+            upperLeftY_Oval = ovalY1;
+        if(ovalY2 < ovalY1)
+            upperLeftY_Oval = ovalY2;
+   
+        return upperLeftY_Oval;
+    }
+
+    public int getWidth_Oval()
+    {        
+        int width_Rect = 0;
+    
+        width_Rect = Math.abs(ovalX2 - ovalX1);
+ 
+        return width_Rect;
+   
+    }
+
+    public int getHeight_Oval()
+    {
+        int height_Rect = 0;
+
+        height_Rect = Math.abs(ovalY2 - ovalY1);
+
+        return height_Rect;
+    }    
+
+    public void drawOval(Graphics g1)
+    {
+      
+        g1.setColor(color1);
+        g1.drawOval(getUpperLeftX_Oval(), getUpperLeftY_Oval(), getWidth_Oval(), getHeight_Oval());
+        g1.fillOval(getUpperLeftX_Oval(), getUpperLeftY_Oval(), getWidth_Oval(), getHeight_Oval());
+        setOvalFlagTrue();      
+    }
+// The drawOval method draws the oval and fills the oval with a randomly generated color.  
+
+
+}
