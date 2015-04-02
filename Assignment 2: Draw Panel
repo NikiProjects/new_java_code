@@ -23,7 +23,7 @@ public class DrawPanel extends JPanel
     {
         setBackground(Color.ORANGE);     
    // The three statements below create 3 seperate arrays of a certain length. 
-   // The length of the arrays will be generated randomly. 
+   // The length of the arrays will be generated randomly.
         ovals = new MyOval[1 + randomNumbers.nextInt(5)];
         rectangles = new MyRectangle[1 + randomNumbers.nextInt(5)];
         lines = new MyLine[1 + randomNumbers.nextInt(5)];
