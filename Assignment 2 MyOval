@@ -3,10 +3,7 @@ package packdrawings;
 import java.awt.Color;
 import java.awt.Graphics;
 
-/**
- *
- * @author Jaya
- */
+
 public class MyOval 
 {
     private int ovalX1; 
