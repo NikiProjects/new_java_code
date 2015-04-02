@@ -1,0 +1,127 @@
+package packExtraCredit;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
+
+public class MyOval1 extends MyShape 
+{
+    
+    private static boolean ovalFilledFlag;
+
+
+// Classes MyOval1 and MyRectangle1 are unique in that they have a boolean value that indicates if the shape is 
+// filled or unfilled. 
+    public MyOval1(int X1, int Y1, int X2, int Y2, Color color1, boolean ovalFilledFlag)
+    {
+        super(X1, Y1, X2, Y2, color1);
+        setOvalFilledFlag(ovalFilledFlag);
+    }
+// There are two constructors in this class. One of the constructors takes arguements and the other constructor does
+// not take arguments. 
+// The constructor below intializes the coordinate values to 0. The variable that indicates the shape's 
+//filled status is initialized to false. 
+
+    public MyOval1()
+    {
+        super();
+        setOvalFilledFlagFalse();
+    }
+
+
+    public void setOvalFilledFlag(boolean ovalFilledFlag)
+    {
+        this.ovalFilledFlag = ovalFilledFlag;
+    }
+
+    public static void setOvalFilledFlagTrue()
+    {
+        ovalFilledFlag = true;
+    }
+
+    public static void setOvalFilledFlagFalse()
+    {
+        ovalFilledFlag = false;
+    }
+
+    public int getUpperLeftX_Oval()
+    {
+        int upperLeftX_Oval = 0;    
+
+        if(getShapeX1() < getShapeX2())
+            upperLeftX_Oval = getShapeX1();
+
+        if(getShapeX2() < getShapeX1())
+            upperLeftX_Oval = getShapeX2();  
+    
+        return upperLeftX_Oval;
+    }
+
+    public int getUpperLeftY_Oval()
+    {
+        int upperLeftY_Oval = 0;
+    
+        if(getShapeY1() < getShapeY2())
+            upperLeftY_Oval = getShapeY1();
+        if(getShapeY2() < getShapeY1())
+            upperLeftY_Oval = getShapeY2();
+   
+        return upperLeftY_Oval;
+    }
+
+    public int getWidth_Oval()
+    {        
+        int width_Oval = 0;
+    
+        width_Oval = Math.abs(getShapeX2() - getShapeX1());
+ 
+        return width_Oval;
+   
+    }
+
+    public int getHeight_Oval()
+    {
+        int height_Oval = 0;
+
+        height_Oval = Math.abs(getShapeY2() - getShapeY1());
+
+        return height_Oval;
+    }    
+
+// Methods implemented below allow user to choose if they would like the shapes to be filled. 
+    public void draw(Graphics g1)
+    {
+
+   
+        g1.setColor(getShapeColor());
+        g1.drawOval(getUpperLeftX_Oval(), getUpperLeftY_Oval(), getWidth_Oval(), getHeight_Oval());
+        g1.fillOval(getUpperLeftX_Oval(), getUpperLeftY_Oval(), getWidth_Oval(), getHeight_Oval());
+   
+    }
+
+    public void draw1(Graphics g1)
+    {
+
+        g1.setColor(getShapeColor());
+        g1.drawOval(getUpperLeftX_Oval(), getUpperLeftY_Oval(), getWidth_Oval(), getHeight_Oval());
+ 
+    }
+
+    public void draw2(Graphics g1)
+    {
+
+        g1.setColor(getShapeColor());
+        g1.drawOval(getUpperLeftX_Oval(), getUpperLeftY_Oval(), getWidth_Oval(), getHeight_Oval());
+ 
+    }
+
+    public void draw3(Graphics g1)
+    {
+
+        g1.setColor(getShapeColor());
+        g1.drawOval(getUpperLeftX_Oval(), getUpperLeftY_Oval(), getWidth_Oval(), getHeight_Oval());
+        g1.fillOval(getUpperLeftX_Oval(), getUpperLeftY_Oval(), getWidth_Oval(), getHeight_Oval());
+    }
+
+
+}
