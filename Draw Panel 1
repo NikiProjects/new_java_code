@@ -1,0 +1,159 @@
+package packExtraCredit;
+
+
+import javax.swing.JPanel;
+import java.security.SecureRandom;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
+
+
+public class DrawPanel1 extends JPanel 
+{
+
+    private String numberOfShapes;
+// The statement below allows for user input. The number of elements the array will hold depends on the user input.  
+// Userinput is converted from a String into an integer. 
+    int userInputvalueParsed = Integer.parseInt(numberOfShapes = JOptionPane.showInputDialog("Please enter the number of shapes you want drawn"));
+// In a second dialog box, user is provided with a list of dropdown choices. 
+    private String[] choices = {"   ", "Fill Ovals only with color", "Fill Rectangles only with color", "Fill both Ovals and Rectangles with color", "Fill neither Rectangles or Ovals with color"};
+ 
+ 
+    private MyShape[] shapes = new MyShape[userInputvalueParsed];
+
+    private int countLines = 0;
+    private int countRectangles = 0; 
+    private int countOvals = 0;
+ 
+    public DrawPanel1()
+    {
+        setBackground(Color.ORANGE);     
+  
+        SecureRandom randomNumbers = new SecureRandom();  
+  
+        for(int i = 0; i < shapes.length; i++)
+        {
+            int lineX1 = randomNumbers.nextInt(300); 
+            int lineY1 = randomNumbers.nextInt(300); 
+            int lineX2 = randomNumbers.nextInt(300); 
+            int lineY2 = randomNumbers.nextInt(300); 
+            Color colorLine = new Color(randomNumbers.nextInt(256), randomNumbers.nextInt(256), randomNumbers.nextInt(256)); 
+ 
+  
+            int rectangleX1 = randomNumbers.nextInt(300);
+            int rectangleY1 = randomNumbers.nextInt(300);
+            int rectangleX2 = randomNumbers.nextInt(300);
+            int rectangleY2 = randomNumbers.nextInt(300);
+            Color colorRectangle = new Color(randomNumbers.nextInt(256), randomNumbers.nextInt(256), randomNumbers.nextInt(256)); 
+  
+  
+            int ovalX1 = randomNumbers.nextInt(300); 
+            int ovalY1 = randomNumbers.nextInt(300);
+            int ovalX2 = randomNumbers.nextInt(300);
+            int ovalY2 = randomNumbers.nextInt(300); 
+            Color colorOval = new Color(randomNumbers.nextInt(256), randomNumbers.nextInt(256), randomNumbers.nextInt(256));   
+
+// The program will randomly determine which type of shapes to draw. 
+// Since the program can only draw 3 types of shapes, a random number is generated from 1 to 3. 
+        
+            int ranNum = 1 + randomNumbers.nextInt(3); 
+    
+            if (ranNum == 1)
+            {
+                shapes[i] = new MyLine1(lineX1, lineY1, lineX2, lineY2, colorLine);
+                countLines++;
+// If the random number (stored in variable ranNum) generated is one, the program will draw a line.
+// The values from 1 to 3 will be generated for the length of the entire array. 
+// Each shape will be stored in an array called shapes. 
+// The size and position of the line drawn will be determined by the randomly generated coordinates.  
+// Each new shape generated may have unique coordinates.               
+            } 
+     
+            if(ranNum == 2)
+            {
+// The statement below is an example of polymorphism. 
+// MyShape variable containes a reference to an object of the child class. 
+// The statement below invokes the constructor of the child class.          
+            
+                shapes[i] = new MyRectangle1(rectangleX1, rectangleY1, rectangleX2, rectangleY2, colorRectangle, false);
+                countRectangles++;
+            
+            }
+            
+            if(ranNum == 3)
+            {
+                shapes[i] = new MyOval1(ovalX1, ovalY1, ovalX2, ovalY2, colorOval, false);
+                countOvals++;
+            }   
+        }
+// Statements above demonstrate that for each type of shape drawn, the value of the corresponding counter increases. 
+ }
+
+
+// The method below returns a string that specifies the number of lines, rectangles, and ovals drawn by the program. 
+// The method will be used to display a label on JPanel.  
+    public String shapeStatusText()
+    {
+   // The String values of the corresponding counters are stored in a String array called shapeStatus.  
+            String[] shapeStatus = new String[3];
+       
+            shapeStatus[0] = String.valueOf(countLines);
+            shapeStatus[1] = String.valueOf(countRectangles);
+            shapeStatus[2] = String.valueOf(countOvals);
+            return "The number of lines, rectangles and ovals drawn are" + Arrays.toString(shapeStatus) + " respectively";
+        
+    }
+ // Invoking constructor of class JOptionPane. 
+// The array that contains a list of choices to select from is passed as an argument in the statement below.  
+    String input =(String)JOptionPane.showInputDialog(null, "Select a choice from the dropdown list", "Selecting between filled or unfilled shapes",JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
+    
+
+
+
+@Override
+// Depending upon user input a certain type of shape will be filled or unfilled. The appropriate methods from 
+// the parent class are called to fill the shapes or leave the shapes unfilled. 
+// The statements below call the static set methods of classes MyOval1 and MyRectangle1.
+// The set methods allow for the setting of the instance variables to a certain value. 
+
+    public void paintComponent(Graphics g1)
+    {    
+        super.paintComponent(g1);
+        if(input.equals(choices[3]))
+           {
+                for(MyShape shape1: shapes)
+                    shape1.draw(g1);
+                MyOval1.setOvalFilledFlagTrue();
+                MyRectangle1.setRectFilledFlagTrue();
+           }
+      
+        if(input.equals(choices[4]))
+           {
+                for(MyShape shape1: shapes)
+                    shape1.draw1(g1);
+                MyOval1.setOvalFilledFlagFalse();
+                MyRectangle1.setRectFilledFlagFalse();
+           }
+    
+        if(input.equals(choices[2]))
+            {
+                for(MyShape shape1: shapes)
+                    shape1.draw2(g1);
+                MyOval1.setOvalFilledFlagFalse();
+            }   MyRectangle1.setRectFilledFlagTrue();
+    
+        if(input.equals(choices[1]))
+            {
+                for(MyShape shape1: shapes)
+                    shape1.draw3(g1);
+                MyOval1.setOvalFilledFlagTrue();
+                MyRectangle1.setRectFilledFlagFalse();
+            }
+    
+    }    
+
+
+
+
+}
