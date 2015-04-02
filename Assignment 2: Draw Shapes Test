@@ -2,10 +2,7 @@ package packdrawings;
 
 import javax.swing.JFrame;
 
-/**
- *
- * @author Jaya
- */
+
 public class TestDrawShapes 
 {
     
