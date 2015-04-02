@@ -3,10 +3,7 @@ import javax.swing.JPanel;
 import java.security.SecureRandom;
 import java.awt.Color;
 import java.awt.Graphics;
-/**
- *
- * @author Jaya
- */
+
 public class DrawPanel extends JPanel 
 {
 // Class DrawPanel is a container like class JPanel. Class JPanel is the superclass of class DrawPanel.    
