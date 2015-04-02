@@ -1,0 +1,147 @@
+package packExtraCredit;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
+import java.security.SecureRandom;
+
+public abstract class MyShape 
+{
+// Parent class MyShape is abstract because it has abstract methods.
+// The subclasses of MyShaepe are MyLine1, MyRectangle1, and MyOval1. 
+// These abstract methods will be implemented in the child classes. 
+// Instance variable data declared below is the data that is common to all of the subclasses.     
+    private int X1; 
+    private int Y1; 
+    private int X2; 
+    private int Y2;     
+    private Color color1; 
+   
+    
+    private SecureRandom randomNumbers = new SecureRandom(); 
+   
+   
+
+        public MyShape(int X1, int Y1, int X2, int Y2, Color color1)
+        {
+            setShapeX1(X1);
+            setShapeY1(Y1);
+            setShapeX2(X2);
+            setShapeY2(Y2);
+
+     
+            setShapeColor(color1);
+    
+        }      
+ 
+        public MyShape()
+        {
+            setShapeX1To0();
+            setShapeY1To0();
+            setShapetX2To0();
+            setShapeY2To0();
+            setShapeColorBlack();
+        }
+ 
+  
+ // Get methods defined below retrieve the value of the instance variables. 
+ 
+    public void setShapeX1(int X1)
+    {
+        this.X1 = X1;
+        
+            
+        if(X1 < 0)
+            this.X1 = 0;   
+    }  
+ 
+    public int getShapeX1()
+    {
+        return X1;
+    }     
+
+    
+    public void setShapeX1To0()
+    {
+        X1 = 0;      
+    }      
+
+    public void setShapeY1(int Y1)
+    {
+        this.Y1 = Y1;
+     
+        if(Y1 < 0)
+            this.Y1 = 0;
+    }   
+
+    public int getShapeY1()
+    {
+        return Y1;
+    }    
+
+    public void setShapeY1To0()
+    {     
+        Y1 = 0;  
+    }
+
+    public void setShapeX2(int X2)
+    {
+      this.X2 = X2;        
+       
+      if(X2 < 0)
+          this.X2 = 0;
+    } 
+
+    public int getShapeX2()
+    {
+        return X2;
+    }
+
+
+    public void setShapetX2To0()
+    {     
+        X2 = 0;
+    }    
+
+    public void setShapeY2(int Y2)
+    {
+            this.Y2 = Y2;      
+     
+        if(Y2 < 0)
+            this.Y2 = 0;
+    }   
+
+    public int getShapeY2()
+    {
+        return Y2;
+    }
+
+    public void setShapeY2To0()
+    {
+        Y2 = 0;    
+    }     
+
+    public void setShapeColor(Color color1)
+    {
+        
+            this.color1 = color1;     
+    }    
+
+    public Color getShapeColor()
+    {
+        return color1;
+    }   
+
+    public void setShapeColorBlack()
+    {
+        this.color1 = Color.BLACK;    
+    }
+
+// These are the abstract methods declared in the superclass.   
+public abstract void draw(Graphics g1);
+public abstract void draw1(Graphics g1);
+public abstract void draw2(Graphics g1);
+public abstract void draw3(Graphics g1);
+
+
+}
