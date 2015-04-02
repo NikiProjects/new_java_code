@@ -1,0 +1,140 @@
+package packdrawings;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
+
+// Private instance variables cannot be accessed outside of the class. 
+public class MyLine   
+{
+   private int lineX1; 
+   private int lineY1; 
+   private int lineX2; 
+   private int lineY2;     
+   private Color color;
+
+// Below, instance variables are initialized through set methods. Instance variables are initialized to the values
+// passed in the parameter of the constructor.    
+   
+    public MyLine(int lineX1, int lineY1, int lineX2, int lineY2, Color color)
+    {
+        setLineX1(lineX1);
+        setLineY1(lineY1);
+        setLineX2(lineX2);
+        setLineY2(lineY2);
+   
+        setColorLine(color);
+   
+    }
+
+// Below, is a constructor that takes no arguments. 
+    public MyLine()
+    {
+        setLineX1To0(); 
+        setLineY1To0();
+        setLineX2To0();
+        setLineY2To0();
+        setLineColorBlack();
+         
+    }
+
+// Below set methods are defined. The constructor calls these set methods. 
+// Some set methods below take no arguments because the other constructor takes no arguments. 
+// For the set methods with arguments, if the argument value is less than 0, then instance variable value 
+//gets set back to 0.  
+    public void setLineX1(int lineX1)
+    {
+        this.lineX1 = lineX1;      
+        if(lineX1 < 0)
+          this.lineX1 = 0;
+    }  
+
+    public void setLineX1To0()
+    {
+        lineX1 = 0;      
+    }    
+
+    public void setLineY1(int lineY1)
+    {  
+        this.lineY1 = lineY1;    
+        if(lineY1 < 0)
+            this.lineY1 = 0;
+    }  
+
+    public void setLineY1To0()
+    {     
+         lineY1 = 0;  
+    }
+
+    public void setLineX2(int lineX2)
+    {
+        this.lineX2 = lineX2;     
+        if(lineX2 < 0)
+          this.lineX2 = 0;
+    }     
+
+    public void setLineX2To0()
+    {     
+        lineX2 = 0;
+    } 
+
+    public void setLineY2(int lineY2)
+    {    
+        this.lineY2 = lineY2;
+        if(lineY2 < 0)
+            this.lineY2 = 0;
+    }
+
+    public void setLineY2To0()
+    {
+        lineY2 = 0;    
+    }     
+
+    public void setColorLine(Color color)
+    {
+        this.color = color;      
+    }
+
+    public void setLineColorBlack()
+    {
+        this.color = Color.BLACK;    
+    }
+
+// Defined below are get methods. 
+    public int getlineCoorX1()
+    {
+        return lineX1;  
+    }
+
+    public int getlineCoorY1()
+    {
+        return lineY1;
+    }
+
+    public int getlineCoorX2()
+    {        
+        return lineX2;
+    }
+
+    public int getlineCoorY2()
+    {        
+        return lineY2;
+    }       
+        
+    public void drawLine(Graphics g1)
+    {
+       
+        g1.setColor(color);
+        g1.drawLine(getlineCoorX1(), getlineCoorY1(), getlineCoorX2(), getlineCoorY2());
+ // Method drawLine references the coordinates by the get methods rather than accessing them directly thru instance 
+ // variables. 
+    }
+   
+
+}
+              
+
+
+
+
+
