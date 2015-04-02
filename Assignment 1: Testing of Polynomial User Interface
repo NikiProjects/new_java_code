@@ -1,9 +1,6 @@
 package packPolynomial;
 
-/**
- *
- * @author Jaya
- */
+
 public class PolynomialTest {
 
 // Method main from class PolynomialUI is static. So code within class PolynomialUI's method main can be accessed
