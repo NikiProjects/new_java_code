@@ -1,9 +1,6 @@
 package packPolynomial;
 
-/**
- *
- * @author Jaya
- */
+
 public class PolynomialUI extends javax.swing.JFrame 
 {
 
