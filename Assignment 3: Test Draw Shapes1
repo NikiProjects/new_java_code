@@ -1,0 +1,32 @@
+package packExtraCredit;
+
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+
+public class TestDrawShapes1 
+{
+
+    
+    public static void main(String[] args)
+        {
+      
+ // The statement below invokes the constructor of class DrawPanel1.  
+            DrawPanel1 panel = new DrawPanel1(); 
+// The statement below instantiates an object of class JLabel and invokes constructor of class JLabel 
+//that takes one argument. 
+// The argument is a method from class DrawPanel1. 
+            JLabel southLabel = new JLabel(panel.shapeStatusText());
+// JPanel container is placed in JFrame container. Statement below invokes contructor of class JFrame.     
+            JFrame app = new JFrame();
+            app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            app.add(panel);
+            app.add(southLabel, BorderLayout.SOUTH);
+            app.setSize(300, 300);
+            app.setVisible(true);
+      
+    
+        }
+                                
+}
