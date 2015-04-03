@@ -1,0 +1,124 @@
+package packExtraCredit;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
+
+public class MyRectangle1 extends MyShape 
+{
+    
+    private static boolean rectFilledFlag; 
+
+    public MyRectangle1(int X1, int Y1, int X2, int Y2, Color color1, boolean rectFilledFlag)
+     {
+         super(X1, Y1, X2, Y2, color1);  
+         setRectFilledFlag(rectFilledFlag);
+     }
+
+    public MyRectangle1()
+    {
+        super();
+        setRectFilledFlagFalse();
+    }
+
+    public void setRectFilledFlag(boolean rectFilledFlag)
+    {
+        this.rectFilledFlag = rectFilledFlag;
+    }   
+
+    public static void setRectFilledFlagTrue()
+    {
+        rectFilledFlag = true;
+    }
+        
+    public static void setRectFilledFlagFalse()
+    {
+        rectFilledFlag = false;
+    }
+
+    public static boolean getRectFilledFlag()
+    {
+        return rectFilledFlag;
+    }
+
+// The four following methods are only applicable to classes that build an oval or a rectangle. 
+    public int getUpperLeftX_Rect()
+    {
+        int upperLeftX_Rect = 0;    
+
+        if(getShapeX1() < getShapeX2())
+            upperLeftX_Rect = getShapeX1();
+
+        if(getShapeX2() < getShapeX1())
+            upperLeftX_Rect = getShapeX2();  
+    
+        return upperLeftX_Rect;
+   
+    } 
+
+    public int getUpperLeftY_Rect()
+    {
+        int upperLeftY_Rect = 0;
+    
+        if(getShapeY1() < getShapeY2())
+            upperLeftY_Rect = getShapeY1();
+        if(getShapeY2() < getShapeY1())
+            upperLeftY_Rect = getShapeY2();
+   
+        return upperLeftY_Rect;
+    }
+
+    public int getWidth_Rect()
+    {        
+        int width_Rect = 0;
+    
+        width_Rect = Math.abs(getShapeX2() - getShapeX1());
+ 
+        return width_Rect;
+   
+    }
+
+    public int getHeight_Rect()
+    {
+        int height_Rect = 0;
+
+        height_Rect = Math.abs(getShapeY2() - getShapeY1());
+
+        return height_Rect;
+    }    
+       
+// All of the subclasses have to implement the abstract methods of the superclass.  
+    public void draw(Graphics g1)
+    {
+    
+        g1.setColor(getShapeColor());
+        g1.drawRect(getUpperLeftX_Rect(), getUpperLeftY_Rect(), getWidth_Rect(), getHeight_Rect());
+        g1.fillRect(getUpperLeftX_Rect(),getUpperLeftY_Rect(), getWidth_Rect(), getHeight_Rect());
+  
+    }
+
+    public void draw1(Graphics g1)
+    {
+    
+        g1.setColor(getShapeColor());
+        g1.drawRect(getUpperLeftX_Rect(), getUpperLeftY_Rect(), getWidth_Rect(), getHeight_Rect());
+
+    }
+
+    public void draw2(Graphics g1)
+    {
+    
+        g1.setColor(getShapeColor());
+        g1.drawRect(getUpperLeftX_Rect(), getUpperLeftY_Rect(), getWidth_Rect(), getHeight_Rect());
+        g1.fillRect(getUpperLeftX_Rect(),getUpperLeftY_Rect(), getWidth_Rect(), getHeight_Rect());
+    }
+
+    public void draw3(Graphics g1)
+    {
+    
+        g1.setColor(getShapeColor());
+        g1.drawRect(getUpperLeftX_Rect(), getUpperLeftY_Rect(), getWidth_Rect(), getHeight_Rect());
+ 
+    }
+
+}
