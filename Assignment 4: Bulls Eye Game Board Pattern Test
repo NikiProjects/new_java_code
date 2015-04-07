@@ -2,8 +2,10 @@ package assignment3;
 
 
 import javax.swing.JFrame;
-public class BullsEyeTest {
-    public static void main(String[] args){
+public class BullsEyeTest 
+{
+    public static void main(String[] args)
+    {
         BullsEye testing = new BullsEye();
         JFrame application = new JFrame();
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -11,4 +13,5 @@ public class BullsEyeTest {
         application.setSize(500, 500);
         application.setVisible(true);
 
-    }}
+    }
+}
