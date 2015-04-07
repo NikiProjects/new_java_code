@@ -1,0 +1,73 @@
+package assignment3;
+
+
+import java.awt.Color;
+import java.awt.Graphics;
+import javax.swing.JPanel;
+import java.security.SecureRandom;
+//JPanel is the parent class of Class BullsEye. 
+// class BullsEye inherits the properites of class JPanel. 
+public class BullsEye extends JPanel {
+    
+    public void paintComponent(Graphics g)
+        {
+            super.paintComponent(g);
+// Statement below creates a new object of the SecureRandom class. 
+            SecureRandom randomNumber = new SecureRandom(); 
+// Statement above uses reference of SecureRandom class object to access method nextInt.
+// SecureRandom class is used to generate random number between 1-256 inclusive. 
+            int ranNum = 1 + randomNumber.nextInt(256);
+            int ranNum2 = 1 + randomNumber.nextInt(256);
+            int ranNum3 = 1 + randomNumber.nextInt(256);
+            int ranNum4 = 1 + randomNumber.nextInt(256);
+            int ranNum5 = 1 + randomNumber.nextInt(256);
+            int ranNum6 = 1 + randomNumber.nextInt(256);
+// Two colors are needed to create Bulls Eye that alternates between two random colors. 
+// Two new objects of the Color class are created and class accepts 3 parameters. 
+// Each Color object will create a seperate color based on the parameter values. 
+            Color color1 = new Color(ranNum, ranNum2, ranNum3);
+            Color color2 = new Color(ranNum4, ranNum5, ranNum6);
+
+            
+            int shift = 0;
+            int centerX = getWidth() / 2;
+            int centerY = getHeight() / 2;
+// The above two statements are used to find the center of JPanel. 
+// getWidth method and getHeight method belong to class JPanel. 
+         int diameter = 0; 
+         for(int circle = 1; circle <= 5 ; circle++) 
+                {
+                    diameter = diameter + 1;
+ // Each circle drawn is filled with a color. 
+// The two if statements below allow adjacent(consecutive) circles to have different colors.                     
+                    
+                    shift = shift - 23;
+                    if (circle == 1 | circle == 3 | circle == 5){ 
+                        g.setColor(color1);
+                       
+                        g.fillOval(centerX - (shift), centerY - (shift), 250 -(diameter * 50), 250-(diameter * 50));}
+                
+                    if (circle == 2 | circle == 4){
+                        g.setColor(color2);
+                        g.fillOval(centerX - (shift), centerY- (shift), 250 -(diameter * 50), 250-(diameter * 50));}
+                       
+//The setColor method and fillOval method belong to the class Graphics.
+// The last 2 parameters in fillOval method represent the diameter of the circle. 
+ 
+//The largest circle is drawn first with a diameter of 250. 
+// The next largest circle will decrease by a diameter of 50. 
+// The third largest circle will have a diameter 100 less than 250. 
+// So the diameter is decreasing by 50 each time. 
+                   
+// The value of shift is decreasing for each iteration of the for loop.
+// All 5 circles will have a different x and y coordinate for the upper left cornor of the bounding rectangle.  
+// So the x and y coordinates are shifted by a uniform value each time. 
+                    
+// The location of x and y coordinates are in reference to center of JPanel. 
+                    
+                }
+    
+
+
+
+}}
