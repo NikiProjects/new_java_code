@@ -1,0 +1,25 @@
+package assignment1;
+
+
+import java.util.Scanner;
+public class Exercise4a 
+{
+    public static void main(String[] args)
+    {
+
+        Scanner number = new Scanner(System.in);
+        System.out.println("Enter an integer. Given below is the sum from 1 \n thru your integer inclusive");
+        int value_input = number.nextInt();
+
+        int counter = 0;
+        int sum = 0;
+ 
+while(counter <= value_input)
+{
+     sum = sum + counter;
+     counter++; 
+}
+
+System.out.println("The sum of the integers is: " + sum);  
+}
+  }
