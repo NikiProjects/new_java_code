@@ -1,0 +1,27 @@
+package assignment2;
+
+
+
+import java.awt.Graphics;
+import javax.swing.JPanel;
+
+public class Circles extends JPanel { 
+    public void paintComponent(Graphics g)
+    {
+        super.paintComponent(g);
+        int shift = 0;
+        int centerX = getWidth()/2;
+        int centerY = getHeight()/2;
+           // variable shift represents moving the position of the upper-left connor of the bounding rectangle.   
+            for(int i = 0; i <= 11; i++)
+                {
+                    shift = shift - 10;
+                    g.drawOval(centerX - (300 + shift), centerY - (300 + shift), 240 - (i * 20), 240 - (i * 20));
+    
+            
+                }
+    
+    
+
+}}
+
