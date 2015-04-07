@@ -1,0 +1,27 @@
+package assignment1;
+
+
+import java.util.Scanner;
+public class Exercise4 
+{
+    public static void main(String[] args)
+    {
+ 
+      Scanner input_value = new Scanner(System.in);
+      System.out.println("Enter an integer. Given below is the sum of the even integers between 1 thru n inclusive");
+      int read_input = input_value.nextInt();
+ 
+      int counter = 2;
+      int sum = 0; 
+ 
+      while(counter <= read_input)
+      {
+          sum = sum + counter; 
+          counter = counter + 2;
+      } 
+
+ System.out.println("The sum of the even integers is: " + sum);   
+
+    
+      }
+}
