@@ -2,23 +2,26 @@ package assignment1;
 
 
 
-/**-9
- *
- * @author Jaya
- */
+
 import java.rmi.activation.ActivationSystem;
 import java.util.Scanner;
-public class Exercise1 {
-    public static void main(String[] args){
+public class Exercise1 
+{
+    public static void main(String[] args)
+    {
        
-       Scanner input = new Scanner(System.in);
-       int input_value = 0;
+        Scanner input = new Scanner(System.in);
+        int input_value = 0;
        
-       while(input_value <= 0){
+       while(input_value <= 0)
+       {
             System.out.println("Please enter an integer greater than 0"); 
-            input_value = input.nextInt();}
+            input_value = input.nextInt();
+        }
        
        
-       if(input_value > 0)
-            System.out.println("You've entered the positive integer: " + input_value);
-}}
+            if(input_value > 0)
+                System.out.println("You've entered the positive integer: " + input_value);
+    }
+
+}
