@@ -7,7 +7,8 @@ import javax.swing.JPanel;
 import java.security.SecureRandom;
 //JPanel is the parent class of Class BullsEye. 
 // class BullsEye inherits the properites of class JPanel. 
-public class BullsEye extends JPanel {
+public class BullsEye extends JPanel 
+{
     
     public void paintComponent(Graphics g)
         {
@@ -34,22 +35,25 @@ public class BullsEye extends JPanel {
             int centerY = getHeight() / 2;
 // The above two statements are used to find the center of JPanel. 
 // getWidth method and getHeight method belong to class JPanel. 
-         int diameter = 0; 
-         for(int circle = 1; circle <= 5 ; circle++) 
+            int diameter = 0; 
+            for(int circle = 1; circle <= 5 ; circle++) 
                 {
                     diameter = diameter + 1;
  // Each circle drawn is filled with a color. 
 // The two if statements below allow adjacent(consecutive) circles to have different colors.                     
                     
                     shift = shift - 23;
-                    if (circle == 1 | circle == 3 | circle == 5){ 
-                        g.setColor(color1);
-                       
-                        g.fillOval(centerX - (shift), centerY - (shift), 250 -(diameter * 50), 250-(diameter * 50));}
+                    if (circle == 1 | circle == 3 | circle == 5)
+                        { 
+                            g.setColor(color1);
+                            g.fillOval(centerX - (shift), centerY - (shift), 250 -(diameter * 50), 250-(diameter * 50));
+                        }
                 
-                    if (circle == 2 | circle == 4){
-                        g.setColor(color2);
-                        g.fillOval(centerX - (shift), centerY- (shift), 250 -(diameter * 50), 250-(diameter * 50));}
+                    if (circle == 2 | circle == 4)
+                        {
+                            g.setColor(color2);
+                            g.fillOval(centerX - (shift), centerY- (shift), 250 -(diameter * 50), 250-(diameter * 50));
+                        }
                        
 //The setColor method and fillOval method belong to the class Graphics.
 // The last 2 parameters in fillOval method represent the diameter of the circle. 
@@ -68,6 +72,5 @@ public class BullsEye extends JPanel {
                 }
     
 
-
-
-}}
+    }
+}
