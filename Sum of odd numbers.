@@ -1,0 +1,25 @@
+package assignment1;
+
+
+import java.util.Scanner;
+public class Exercise4c 
+{
+    public static void main(String[] args)
+    {    
+
+        Scanner number = new Scanner(System.in);
+        System.out.println("Please enter an integer to get the sum of the odd numbers: ");
+        int value_input = number.nextInt();
+
+        int counter = 1; 
+        int sum = 0;
+
+        while(counter <= value_input)
+        {
+            sum = sum + counter;
+            counter = counter + 2; 
+        }
+
+System.out.println("The sum of the odd integers is: " + sum);
+    }
+}
