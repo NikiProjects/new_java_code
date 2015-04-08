@@ -20,6 +20,6 @@ public class Exercise4c
             counter = counter + 2; 
         }
 
-System.out.println("The sum of the odd integers is: " + sum);
+        System.out.println("The sum of the odd integers is: " + sum);
     }
 }
