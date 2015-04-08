@@ -369,7 +369,7 @@ public void setConstant(int index, double valueCoefficient)
 
       }
 
-    private double total = 0;
+   private double total = 0;
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
      
  // Pressing this button adds up all the values stored in the monomialValue array.            
