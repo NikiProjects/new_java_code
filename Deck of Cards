@@ -5,10 +5,7 @@
  */
 package assignment3;
 
-/**
- *
- * @author Jaya
- */
+
 import java.security.SecureRandom;
 import java.util.Arrays;
 
