@@ -1,0 +1,49 @@
+package assignment3;
+
+
+public class Card 
+{
+    
+    private final String face; // face of card ("Ace", "Deuce", ...)
+    private final String suit; // suit of card ("Hearts", "Diamonds", ...)
+
+   // two-argument constructor initializes card's face and suit
+    public Card(String face, String suit)
+    {
+        this.face = face;
+        this.suit = suit; 
+    } 
+
+   // return String representation of Card
+    public String toString() 
+    { 
+          String a = face;
+          if(face.equals("11"))
+            a = ("Jack");
+          if(face.equals("12"))
+            a = ("Queen");
+          if(face.equals("13"))
+            a = ("King");
+          if(face.equals("14"))
+            a = ("Ace");
+          if(face.equals("2"))
+            a = ("Deuce");
+// The Code above in the toString method does the conversion from numeric to non-numeric string values. 
+        return a + " of " + suit;
+    }  
+
+// I Added methods below to access the values of face and suit.
+// getFace and getSuit methods can be accessed from Class DeckOfCards because class DeckOfCards contains a new object of Class Card. 
+   
+public String getFace()
+    {
+ 
+        return face;
+    
+    }
+
+public String getSuit()
+    {
+        return suit;
+    }
+}
