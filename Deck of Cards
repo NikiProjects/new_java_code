@@ -1,0 +1,445 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package assignment3;
+
+/**
+ *
+ * @author Jaya
+ */
+import java.security.SecureRandom;
+import java.util.Arrays;
+
+public class DeckOfCards 
+{
+    private Card[] deck; // array of Card objects
+    private int currentCard; // index of next Card to be dealt (0-51)
+    private static final int NUMBER_OF_CARDS = 52;
+  
+   // random number generator
+    private static final SecureRandom randomNumbers = new SecureRandom();
+   
+   // constructor fills deck of Cards
+   // constructor DeckOfCards below contains two arrays faces and suits.
+   // I changed the elements of faces array into numeric representations of String data type.
+   // I also changed the value of Ace, Jack, Queen, King into numeric representations of String data type. 
+   // Ace("14") is above the value of King("13").
+   // Also, based on the relative values of the cards Jack is represented as "11" and Queen is represented as "12". 
+   // When the 5 cards dealt out are displayed they will be represented as non-numeric values. 
+    public DeckOfCards()
+    {
+      
+        String[] faces = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"};  
+        String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
+      
+      
+       
+        deck = new Card[NUMBER_OF_CARDS]; // create array of Card objects
+        currentCard = 0; // first Card dealt will be deck[0]
+
+      // populate deck with Card objects
+      
+        for (int count = 0; count < deck.length; count++) 
+          {
+ // Statement below is creating a new object of class Card. In the new object parameters consist of arrays faces and suits. 
+ // Here, you're invoking the constructor of class Card. Card constructor has 2 parameters: face and suit. 
+            deck[count] = 
+              new Card(faces[count % 13], suits[count % 4]);
+        
+          }    
+      } 
+ 
+ 
+   public void shuffle()
+   {
+      // next call to method dealCard should start at deck[0] again
+        currentCard = 0; 
+
+      // for each Card, pick another random Card (0-51) and swap them
+        for (int first = 0; first < deck.length; first++) 
+      {
+         // select a random number between 0 and 51 
+            int second =  randomNumbers.nextInt(5);
+         
+         // swap current Card with randomly selected Card
+            Card temp = deck[first];        
+            deck[first] = deck[second];   
+            deck[second] = temp;            
+      } 
+   } 
+
+   // deal one Card. If this method is called 5 times, 5 cards will be dealt. 
+    public Card dealCard()
+    {
+      // determine whether Cards remain to be dealt
+        if (currentCard < deck.length)
+          return deck[currentCard++]; // return current Card in array
+        else        
+          return null; // return null to indicate that all Cards were dealt
+     } 
+    
+    public boolean pairID()
+    {
+      int counter_Match = 0;
+      int storeIndexA;
+      boolean result = false;
+ // For each value of indexA in the outer for loop, indexB will take on values from 0-4.   
+      for(int indexA = 0; indexA <= 4; indexA++)
+        { 
+            storeIndexA = indexA;
+            for(int indexB = 0; indexB <= 4; indexB++)      
+              {
+                if(storeIndexA != indexB)      // for each Card object, comparison done below should not occur with itself. 
+                    {
+                        if(deck[indexA].getFace().equals(deck[indexB].getFace()) && deck[indexA].getSuit().equals(deck[indexB].getSuit()))
+                            counter_Match++;  
+                    }
+              }
+        }
+
+// The getFace method above will yield a String value corresponding to array called deck.
+//So to check equivalency I use the .equals method.            
+      
+// Dividing the counter_Match by 2 because we do not need to account for any duplicate comparisons. 
+// For ex. when indexA = 0, deck[0] will be compared to deck[1]...
+//If there's a match, when indexA = 1 and deck[1] is compared to deck[0], this comparison should not be accounted for...
+// This is why counter_Match is divided by 2. 
+      if (counter_Match / 2 == 1)
+        result = true;
+      System.out.println("");  
+      System.out.println("Exercise 7.30a: Number of matches found: " + counter_Match/2);
+      return result;
+
+    }
+
+    public boolean twoPairID()
+    {
+    
+        int counter_Match = 0;
+        int storeIndexA = -1;
+        boolean result = false;
+ 
+        for(int indexA = 0; indexA <= 4; indexA++)
+        {
+            storeIndexA = indexA; 
+    
+            for(int indexB = 0; indexB <= 4; indexB++)
+              {
+                if(storeIndexA != indexB)
+                  {
+                      if(deck[indexA].getFace().equals(deck[indexB].getFace()) & deck[indexA].getSuit().equals(deck[indexB].getSuit()))
+                      counter_Match++;
+                  } 
+     
+            
+               }
+        }
+ // If there are 2 pairs, there should be 2 sets of matches....
+ // In this case value of counter_Match should be 2. 
+      if (counter_Match/2 == 2)
+        result = true;
+      else
+        result = false;
+      System.out.println("");
+      System.out.println("Exercise 7.30b: Number of matches found: " + counter_Match/ 2);
+      return result;
+    }
+
+
+
+
+
+
+
+    public boolean three()     
+      {
+        int counter_FaceMatch = 0;
+        int counter_SuitMatch = 0;
+        boolean result;
+       
+          for(int indexA = 0; indexA <= 4; indexA++)
+          {
+              int storeIndex = indexA;            
+            
+              for(int indexB = 0; indexB <= 4; indexB++)
+                    {
+                        if(storeIndex != indexB)
+                                {
+                                    if(deck[indexA].equals(deck[indexB].getFace()))
+                                        counter_FaceMatch++;  
+                                }      
+        
+                     }   
+            }
+
+//above code is comparing if there are any face matches. If there are matches counter counter_FaceMatch increses. 
+ 
+          for(int indexC = 0; indexC <= 4; indexC++)
+          {
+              int storeIndex = indexC;            
+       
+
+              for(int indexD = 0; indexD <= 4; indexD++)
+                {
+                   
+                    if(storeIndex != indexD)
+                        {           
+                            if(deck[indexC].getSuit().equals(deck[indexD].getSuit()))
+                                counter_SuitMatch++;        
+        
+                        }
+                 }
+  
+    
+          }
+
+ 
+// above code is comparing if there are any suit matches. If there are counter counter_SuitMatch goes up. 
+// in order for there to be 3 of a kind, either 3 faces have to match or three suits have to match.         
+      if (counter_FaceMatch/2 == 3 | counter_SuitMatch/2 == 3)
+          result = true;
+      else
+        result = false;
+ 
+      return result;   
+    }
+
+
+
+    public boolean four()
+      {
+        int counter_FaceMatch = 0;
+        int counter_SuitMatch = 0;
+        boolean result = false; 
+ 
+        for(int indexA = 0; indexA <= 4; indexA++)
+          {
+              int storeIndex = indexA;            
+            
+         
+                  for(int indexB = 0; indexB <= 4; indexB++)
+                      {
+                          if(storeIndex != indexB)
+                                {
+                                    if(deck[indexA].getFace().equals(deck[indexB].getFace()))
+                                        counter_FaceMatch++;  
+                                } 
+                      }
+          }     
+//the above code checks if any face values contained in the hand have a match. 
+        for(int indexC = 0; indexC <= 4; indexC++)
+        {
+            int storeIndex = indexC;            
+
+            for(int indexD = 0; indexD <= 4; indexD++)
+                {
+ // making sure indexC is not equal to indexD because a card cannot be compared with itself.                    
+                    if(storeIndex != indexD)
+                        {           
+                            if(deck[indexC].getSuit().equals(deck[indexD].getSuit()))
+                                counter_SuitMatch++;        
+        
+                        }
+                }   
+          }
+ // the above code will keep track of how many suit matches there are. getSuit accesses method from Class Card that returns suit variable value. 
+      if(counter_FaceMatch/2 == 4)
+          result = true;
+      if(counter_SuitMatch/2 == 4)
+          result = true;
+      return result;
+    
+    
+ 
+    
+    } 
+    
+    public boolean flush()
+    {
+        int counter_SuitMatch = 0;
+        int storeIndexA = -1;
+        boolean result;
+ 
+        for(int indexA = 0; indexA <= 4; indexA++)
+          {
+              storeIndexA = indexA;            
+     
+            for(int indexB = 0; indexB <= 4; indexB++)
+                {
+ // calling the getSuit method to access what is stored in the suit instance variable from the class Card.                    
+                    if(storeIndexA != indexB)
+                        {           
+                            if(deck[indexA].getSuit().equals(deck[indexB].getSuit()))
+                                counter_SuitMatch++;        
+        
+                        }
+                }   
+      }        
+    
+  
+        if(counter_SuitMatch == 5)
+          result = true;
+        else
+          result = false;
+ 
+        return result;    
+    
+    }
+
+    public boolean straight()
+      {
+        
+    
+          int lowestFaceValue = 0; 
+          int counter_ConsecutiveValues = 0; 
+          int Counter_duplicates = 0;
+          int[] order = new int[5];
+          boolean result = false; 
+
+// Array called deck consists of Card objects. From deck array, inserting elements 0-4 into another newly created array called 'order'.
+// Array called order contains 5 elements of face values which are sorted in ascending order.
+// Face values are stored in array as string values. Below using class Integer to convert String values into numeric values.  
+          for(int indexA = 0; indexA <= 4; indexA++)  
+          {
+              order[indexA] = Integer.parseInt(deck[indexA].getFace());
+          }
+          Arrays.sort(order);
+          System.out.println("");
+          System.out.println("Exercise 7.30f - ");
+          System.out.println("Sorted Array:"); 
+
+// Elements in new array 'order' are sorted in ascending order. So the first element order[0] will have the lowest Face value.    
+
+          for(int value : order)
+          {   
+              System.out.println("Array order: " + value);
+              lowestFaceValue = order[0];
+          }  
+// The goal of the following for loop is to determine whether value at two consecutive locations within the 'order' array are the same. 
+// Equivalency is checked at all 5 elements. Variable named index will have the values 0, 1, 2, 3. 'index + 1'will have the values 1, 2, 3, 4. 
+        for(int indexB = 0; indexB <= 3; indexB++)   
+        { 
+            if(order[indexB] == order[indexB + 1])
+            Counter_duplicates++;
+        }
+// Below, the outer if statement will be executed if there are no duplicates in the 'order' array. 
+// If there are duplicates in the array, the 5 array values cannot be consecutive. 
+        if(Counter_duplicates == 0)
+        {
+            for(int indexC = 0; indexC <= 4; indexC++)
+              {
+                  if(order[indexC] == lowestFaceValue + 0 | order[indexC] == lowestFaceValue + 1 | order[indexC] == lowestFaceValue + 2 | order[indexC] == lowestFaceValue + 3 | order[indexC] == lowestFaceValue + 4)  
+                    counter_ConsecutiveValues++;
+              }
+   
+        }
+// the above if statement executes if no duplicates are found in in the array called order. 
+        else
+          {
+            System.out.println("Exercise 7.30f - You have duplicates in your list"); 
+            result = false;
+          }   
+        
+        if (counter_ConsecutiveValues == 5)
+          {
+              System.out.println("Exercise 7.30f - You have a straight");
+              result = true;
+          }
+        
+        else 
+        {      
+          System.out.println("Exercise 7.30f - You do not have 5 cards of consecutive face values");
+          result = false; 
+        }    
+
+// Consecutive values are determined from the reference of the lowest value in the array.          
+
+      return result;
+    }
+    
+
+
+
+    public boolean fullHouse()
+    {
+      
+        int counter_Match = 0;
+        int counter_NoMatch = 0;
+        int storeIndexA = -1;
+        int storeFaceValue = 0;
+        int[] arrayStoreFace = new int[5];
+        int counterIndexMatchA = 0; 
+        int counterIndexMatchB = 0;
+        int counterIndexMatchC = 0;
+        int counterIndexMatchD = 0;
+        boolean result = false;
+     
+        for(int indexA = 0; indexA <= 4; indexA++)
+            {
+                storeIndexA = indexA;  
+                for(int indexB = 0; indexB <= 4; indexB++)
+                    {            
+                        if(indexB != storeIndexA)  
+                            {
+                                 if(deck[indexA].getFace().equals(deck[indexB].getFace()))
+                                    {  // In order for there to be a full house, there has to be at least 1 match comparing the face values. 
+                                        storeFaceValue = Integer.parseInt(deck[indexA].getFace());
+                                        arrayStoreFace[indexA] = storeFaceValue;  
+                                        counter_Match++; 
+ // This if statement will be executed if at least one match is found with the array called deck. 
+ // If any Cards have face values that have a match, they will be stored in another array called arrayStoreFace. 
+ // ArrayStoreFace is already declared to hold 5 elements. 
+ // Also for every match, counter counter_Match will increase by 1. 
+                                    } 
+                    else
+                        counter_NoMatch++;
+               
+                            }
+                    }   
+              }
+               
+// the following if statement will be executed only if there are any matches in the array. 
+// If there are no matches, the value of another counter counter_NoMatch increases. 
+             if(counter_Match > 0)       
+                {  
+                    System.out.println("");
+                    System.out.println("Array for Exercise 7.30g:");
+                    System.out.println("Array (sorted) containing face values with matches.");
+                    Arrays.sort(arrayStoreFace);
+                    for(int value : arrayStoreFace)
+                      System.out.println(value);
+// Because arrayStoreFace is in ascending order, only certain combinations of matches can exist in a full house. 
+// If the first two elements have face values match, these face values have to be different from the third element,
+// and the next 3 elements have to have face values that match. 
+// Likewise, if the last 2 elements of face match, then the first three face values have to match and these face values have to be different from the first two.  
+                      if(arrayStoreFace[0] == arrayStoreFace[1] & arrayStoreFace[0] != 0)
+                          counterIndexMatchA++;
+                            
+                      if(arrayStoreFace[0] == arrayStoreFace[1] & arrayStoreFace[0] == arrayStoreFace[2] & arrayStoreFace[0] != 0)
+                          counterIndexMatchB++;
+                            
+                      if(arrayStoreFace[3] == arrayStoreFace[4] & arrayStoreFace[3] != 0)
+                          counterIndexMatchC++;
+                            
+                      if(arrayStoreFace[2] == arrayStoreFace[3] & arrayStoreFace[2] == arrayStoreFace[4] & arrayStoreFace[2] != 0)
+                          counterIndexMatchD++;               
+ // Certain combinations of if statements above will result in a full house.                
+                      if(counterIndexMatchB == 1 & counterIndexMatchC == 1 & arrayStoreFace[0] != arrayStoreFace[3])
+                      {
+                        result = true;
+                      }
+                      if(counterIndexMatchA == 1 & counterIndexMatchD == 1 & arrayStoreFace[0] != arrayStoreFace[2])
+                      {
+                        result = true;
+                      }
+             
+                }        
+                
+  if(counter_NoMatch == 1)
+      result = false;
+  
+ return result;                
+  }
+}
