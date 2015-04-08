@@ -1,0 +1,41 @@
+package assignment3;
+
+
+public class DeckOfCardsTest 
+{
+    public static void main(String[] args)
+      {
+// Next statement below creates a new object of class DeckOfCards....
+// Creating this new object allows us to access the methods in the DeckOfCards class. 
+      
+          DeckOfCards myDeckOfCards = new DeckOfCards();
+    
+          myDeckOfCards.shuffle(); // place Cards in random order
+      
+      // print all 5 Cards in the order in which they are dealt
+          System.out.println("The five cards dealt are: ");
+          for (int i = 1; i <= 5; i++)
+          {
+         // deal and display a Card
+         // This dealCard method is called 5 times.  
+            System.out.printf("%n%s", myDeckOfCards.dealCard());
+         
+    	 
+          } 
+  System.out.println("");
+  System.out.println("False result below indicates an answer of 'No'");
+  System.out.println("True result below indicates an answer of 'Yes'");
+  System.out.printf("%n%n%s%s","Exercise 7.30a) Hand contains a pair of cards? ", myDeckOfCards.pairID());
+  System.out.println("");
+  System.out.printf("%n%s%s","Exercise 7.30b) Hand contains 2 pairs of cards? ", myDeckOfCards.twoPairID());
+  System.out.println(""); 
+  System.out.printf("%n%s%s","Exercise 7.30c) 3 of a kind contained in this hand? ", myDeckOfCards.three());
+  
+  System.out.printf("%n%s%s", "Exercise 7.30d) 4 of a kind contained in this hand? ", myDeckOfCards.four());
+  System.out.println();
+  System.out.printf("%n%s%s", "Exercise 7.30e - Deck contains a flush? ", myDeckOfCards.flush());
+  System.out.println("Exercise 7.30f Hand contains a straight? " + myDeckOfCards.straight());
+  System.out.println("Exercise 7.30g) You hava a Full House?: " + myDeckOfCards.fullHouse()); 
+   }     
+
+}
