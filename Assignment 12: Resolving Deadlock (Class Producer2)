@@ -1,0 +1,43 @@
+package packResolveDeadlock;
+
+
+
+
+public class Producer2 implements Runnable
+{
+  
+    private final Buffer sharedLocation1;
+   
+    public Producer2 (Buffer sharedLocation1)
+    {
+      this.sharedLocation1 = sharedLocation1;
+    }
+// Just like in class Producer1, the run method in this class calls a method of interface Buffer. 
+// We call the blockingPut2 method to add values to buffer2. 
+// The parameter of method blockingPut2 specifies which value is to be added to buffer2.  
+    public void run()
+    {
+        int sum = 0;
+        for (int count2 = 1; count2 <= 10; count2++)
+            {
+                try
+                    {
+
+//            sum += count;
+
+                        System.out.printf("%s%s%s","Name of thread:(Producer2) ", Thread.currentThread().getName(), " about to call method blocking put. ");
+                        sharedLocation1.blockingPut2(count2);
+//            System.out.printf ("\t\t%2d%n", sum);
+                    }
+                catch (InterruptedException exception)
+                    {
+                        Thread.currentThread().interrupt();
+                    }
+      
+      
+      }
+// When program control exits the for loop, message is printed that thread is done producing.          
+        System.out.printf (
+            "Producer2 done producing%nTerminating producer2%n");
+   }
+}
