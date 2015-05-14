@@ -1,0 +1,44 @@
+package packResolveDeadlock;
+
+
+public class Producer1 implements Runnable
+{
+   
+    // sharedLocation1 is a variable that belongs to interface Buffer. 
+    // There are methods declared in the interface Buffer. 
+    // The methods declared in interface Buffer are implemented in Class BlockingBuffer. 
+    private static Buffer sharedLocation1;
+   
+    public Producer1 (Buffer sharedLocation1)
+    {
+      this.sharedLocation1 = sharedLocation1;
+    }
+  
+    public void run()
+    // At this point program control has entered the run method. 
+        {
+            int sum = 0;
+            for (int count1 = 1; count1 <= 10; count1++)
+// If there is room in the ArrayBlockingQueue, Producer1 will place 10 values in buffer1.             
+                {
+                    try
+                        {
+                            System.out.printf("%s%s%s","(Producer1) ", Thread.currentThread().getName(), " about to call method blocking put. ");
+                            sharedLocation1.blockingPut(count1);
+//            sum += count;
+//            System.out.printf ("\t\t%2d%n", sum);
+                        }
+                    catch (InterruptedException exception)
+                        {
+                            Thread.currentThread().interrupt();
+                        }
+      
+      
+                }
+                System.out.printf (
+                    "Producer1 done producing%nTerminating producer1%n");
+   }
+}    
+
+
+
