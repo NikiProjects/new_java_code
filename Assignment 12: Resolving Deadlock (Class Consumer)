@@ -1,0 +1,51 @@
+package packResolveDeadlock;
+
+
+
+
+public class Consumer implements Runnable
+{
+    
+    private final Buffer sharedLocation1;
+ 
+   
+   
+    public Consumer (Buffer sharedLocation1)
+        {
+            this.sharedLocation1 = sharedLocation1;
+      
+        }   
+   
+    public void run()
+    {
+ 
+      int sum = 0;
+      for (int count3 = 1; count3 <= 10; count3++)
+  // The for condition needs to iterate only 10 times beacuse with each iteration, values are removed from both ArrayBlockingQueues. 
+  // The blockingGet method will not come to completion until both values are removed from the ArrayBlockingQueues.
+  // The blockingGet method will not come to completion until there is value available in the ArrayBlockingQueue to be read and removed. 
+      {
+            try
+            {
+
+                System.out.printf("%s%s%s","Name of thread:(Consumer1) ", Thread.currentThread().getName(), " about to call methods blocking get. ");
+                int totalRetrievedValues = sharedLocation1.blockingGet();
+// To calculate the sum of all the read & retrieved values, we incorporate the return value of method blockingGet in the statement below.               
+              sum = sum + (totalRetrievedValues);
+ //             System.out.printf ("\t\t\t\t%s%2d%n","The sum of generated values is: ", sum);
+               
+            }
+            catch (InterruptedException exception)
+            {
+                Thread.currentThread().interrupt();
+               
+            }
+      
+ 
+      
+      }
+      System.out.println("The sum of the consumed value is: " + sum);
+      System.out.printf(
+         "Consumer done consuming%nTerminating Consumer%n");
+    }
+}
