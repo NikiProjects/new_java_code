@@ -17,7 +17,7 @@ public class BlockingBufferTestA
       
       
   // sharedLocation1 is a variable of type Buffer. 
-  // The 2 Producer classes and the Consumer class intialize variable sharedLocation1. 
+  // A new object of classes Producer1, Producer2, and Consumer is created. 
         eS.execute(new Producer1(sharedLocation1));
         eS.execute(new Producer2(sharedLocation1));
         eS.execute(new Consumer(sharedLocation1));
