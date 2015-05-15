@@ -1,0 +1,55 @@
+package packResolveDeadlock;
+
+
+import java.util.concurrent.ArrayBlockingQueue;
+public class BlockingBuffer implements Buffer  
+{
+// Lines 9 and 10 declare objects of class ArrayBockingQueue. 
+// Both ArrayBlockingQueues willhold values of type Integer. 
+private final ArrayBlockingQueue<Integer> buffer1;
+private final ArrayBlockingQueue<Integer> buffer2;
+// Constructor below declares that each of the 2 ArrayBlockingQueues can hold only one value at a time.    
+    public BlockingBuffer()
+    {
+        buffer1 = new ArrayBlockingQueue<Integer>(1);
+        buffer2 = new ArrayBlockingQueue<Integer>(1);
+    }
+  
+// The rest of the code below implements methods declared in interface Buffer.    
+    public void blockingPut(int value1) throws InterruptedException        
+    {
+ 
+// put is a method that belongs to class ArrayBlockingQueue.  
+// This method waits if necessary for space to become available in the ArrayBlockingQueue.  
+       buffer1.put(value1);
+        System.out.println("Value has been written to buffer1 - buffer1 Cells Occupied: " + buffer1.size());     
+        System.out.println("Producer1 writes value to buffer1: " + value1);
+       
+   }  
+  
+    public void blockingPut2(int value2) throws InterruptedException
+    {
+       buffer2.put(value2);
+       System.out.println("Value has been written to buffer2 - Size of buffer2: " + buffer2.size());
+       System.out.println("Producer2 writes to buffer2: " + value2);
+    }  
+   
+   
+    public int blockingGet() throws InterruptedException
+    {
+// take is a method that belongs to class ArrayBlockingQueue. 
+// take method waits if necessary until an element becomes available. 
+      int readValue1 = buffer1.take();
+     
+      System.out.println("Value has been read from buffer1 - Size of buffer1 is: " + buffer1.size());
+      System.out.println("buffer1 value read by consumer is: " + readValue1);
+      int readValue2 = buffer2.take();
+      System.out.println("Value has been read from buffer2 - Size of buffer2 is: " + buffer2.size());
+      System.out.println("buffer2 value read by consumer is: " + readValue2);
+      int sumRetrievedValues = (readValue1 + readValue2);
+        return sumRetrievedValues;  
+
+    }
+
+
+}
