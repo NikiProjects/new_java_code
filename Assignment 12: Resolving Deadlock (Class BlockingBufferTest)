@@ -1,0 +1,31 @@
+package packResolveDeadlock;
+
+
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+public class BlockingBufferTestA
+{
+    
+    public static void main(String[] args) throws InterruptedException
+    {
+  // This next line shows the object of class ExecutorService.       
+        ExecutorService eS = Executors.newCachedThreadPool();
+  // The statement below refers to an object that implements the interface Buffer by using a reference variable of type of the interface. 
+        Buffer sharedLocation1 = new BlockingBuffer();
+      
+      
+  // sharedLocation1 is a variable of type Buffer. 
+  // The 2 Producer classes and the Consumer class intialize variable sharedLocation1. 
+        eS.execute(new Producer1(sharedLocation1));
+        eS.execute(new Producer2(sharedLocation1));
+        eS.execute(new Consumer(sharedLocation1));
+   
+        eS.shutdown();
+        eS.awaitTermination(1, TimeUnit.MINUTES);
+             
+     } 
+
+
+}
