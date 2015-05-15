@@ -1,0 +1,18 @@
+
+package packResolveDeadlock;
+
+
+public interface Buffer 
+{
+    
+  // The first 2 methods declared here, take one argument of type int.   
+    public void blockingPut (int value) throws InterruptedException;
+
+    public void blockingPut2 (int value) throws InterruptedException; 
+   
+  // The next method declared here, returns a value of type int.   
+    public int  blockingGet() throws InterruptedException;
+
+
+}
+ 
