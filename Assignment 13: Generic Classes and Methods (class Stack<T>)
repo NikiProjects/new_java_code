@@ -1,0 +1,108 @@
+package packCh20;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+public class Stack<T> 
+    {
+        private final ArrayList<T> elements;
+        // Constructors below specify the capacity of the ArrayList. 
+        public Stack()
+        {
+            this(10);
+        }
+        public Stack (int capacity)
+        {
+            int initCapacity = capacity > 0 ? capacity : 10;
+            elements = new ArrayList<T> (initCapacity);
+        }
+        // The push is called from the testPush method in Class StackTest2. 
+        // This method adds values to the ArrayList. 
+        // The ArrayList is referred to by the variable name 'elements'. 
+        public void push (T pushValue)
+        {
+            elements.add(pushValue);
+        }
+        // In the next method declared below, if there are no values stored within the ArrayList an exception is thrown
+        // and a custom message is displayed. 
+        // Below, the constructor of EmptyStackException is invoked. 
+        public T pop()
+        {
+            if (elements.isEmpty())
+                throw new EmptyStackException ("Stack is empty, cannot pop");
+            return elements.remove (elements.size() - 1);
+        }
+
+        // The next two methods are the methods we were assigned to declare. 
+        // The peek method returns the value of the next available stack element. 
+        // The peek method displays and returns the top value in each of the data structures. 
+ 
+        public T peek()
+        {
+          
+            if(elements.isEmpty()) 
+                throw new EmptyStackException("Stack is empty"); 
+            // The get method of ArrayList returns an element at a specific index. 
+            // This index value is passed as a parameter to the get method. 
+            if(elements.isEmpty() == false)
+                System.out.println("Peeked: " + elements.get((elements.size()) - 1));
+            return elements.get(elements.size() - 1);
+   
+        }       
+   
+         /*public String peek()
+            {
+                String stackValue = "";        
+                if(elements.isEmpty()== false)
+                {
+                   stackValue = elements.toString();
+                }
+            return stackValue;
+            }
+        */
+   
+   // The display method returns a String value and displays all of the values in the stack for each of the two data structures.
+   // The toArray method of class ArrayList returns an array of type Object that contains all the elements in the ArrayList.  
+           public String display()
+            {   
+                String outputString = "";
+            
+
+         // Values in ArrayList are assigned to an array of type Object.       
+                if(elements.isEmpty() == false)
+                {
+                    Object [] objArray = elements.toArray();
+                
+                
+         // Statement below returns a string representation of the array specified as an argument.
+                
+                outputString = Arrays.toString(objArray);
+                System.out.printf("%s,%s","The contents of the stack are: ", outputString);
+                }
+            return outputString;
+        
+            }
+  
+  
+           /* public String display()
+              {
+                    String stackValue = "";
+   // Statement below creates a new array of type Object. 
+                    Object[] arrValues = new Object[elements.size()];
+                    if(elements.isEmpty() == false)
+                    {
+                        for(int i = 0; i < elements.size(); i++)
+                        {
+                            arrValues[i] = elements.get(i);
+                        }
+      
+                        stackValue = Arrays.toString(arrValues);
+                    }
+      return stackValue;
+    
+
+
+            } */
+
+
+}
