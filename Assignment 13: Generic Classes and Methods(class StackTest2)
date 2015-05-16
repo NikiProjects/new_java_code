@@ -1,0 +1,86 @@
+package packCh20;
+
+import java.util.Objects;
+
+
+public class StackTest2 
+{
+    public static void main (String[] args)
+   {
+      Double[]  dblElements = {1.1,2.2,3.3,4.4,5.5};
+      Integer[] intElements = {1,2,3,4,5,6,7,8,9,10};
+      // Statements below invoke the constructors of class Stack and create a new object of class Stack.  
+      // The first object will hold data of type Double. 
+      // The second object will hold data of type Integer. 
+      
+      Stack<Double>  dblStack = new Stack<>(5);
+      Stack<Integer> intStack = new Stack<>();
+    // Statement below calls method testPush.   
+      testPush ("doubleStack", dblStack, dblElements);
+      // The statement below outputs the value at the top of the ArrayList of type Double.   
+      System.out.println("Peeked" + dblStack.peek());
+      
+      // The statement below outputs all of the values of the ArrayList of type Double. 
+      System.out.println("Displayed" + dblStack.display());
+      // The display method returns a String value. If this variable of type String has a null value, then a certain message is outputted. 
+      // The variable of type String will have a null value, if the ArrayList is empty. 
+      if(dblStack.display().equals(""))
+          System.out.println("Stack is empty");
+      // Statement below calls method testPop. 
+      testPop ("doubleStack", dblStack);
+    // Calling the same 4 methods again for array and Stack of type Double. 
+      testPush ("intStack", intStack, intElements);
+       // The statement below outputs the value at the top of the ArrayList of type Integer. 
+      System.out.println("Peeked" + intStack.peek());
+      // The statement below outputs all of the values of the ArrayList of type Integer.
+      System.out.println("Displayed" + intStack.display());
+      if(intStack.display().equals(""))
+          System.out.println("Stack is empty");
+      testPop  ("intStack", intStack);
+   }
+    
+    // All the values from array dblElements are added to the ArrayList of type Double.
+    // All the values from array intElements are added to the ArrayList of type Integer. 
+    
+    public static <T> void testPush (
+      String name, Stack<T> stack, T[] values)
+      {
+        System.out.printf("%nPushing Elements onto %s%n", name);
+      
+      // The value that gets pushed onto the Stack may be of type Double or type Integer.  
+      // So variable pushValue is of type T.
+      // The data type of the array and the data type of variable 'value' has to match. 
+        for (T value : values) 
+         {
+            System.out.printf("%s ",value);
+        // Statement below, uses reference variable of Stack object to invoke method of class Stack.  
+            stack.push(value);
+         }
+      }
+    // The last value to be added to the ArrayList is removed first. 
+    // The pop method can throw an EmptyStackException if the ArrayList is empty. 
+    // Method pop removes values from any type of data structure. 
+    public static <T> void testPop (String name, Stack<T> stack)
+    {
+        try
+        {
+            System.out.printf ("%nPopping Elements from %s%n", name);
+  // Declaring a variable of data type T.
+  // The value that gets stored in variable popValue can be of type Double or type Integer.  
+  // The value in the Stack may be of type Double or type Integer. 
+            T popValue;
+            while (true)
+            {
+                popValue = stack.pop();
+                System.out.printf ("%s ", popValue);
+            }
+        }
+        catch (EmptyStackException eSE)
+        {
+            System.out.println();
+            eSE.printStackTrace();
+        }
+   }
+
+    
+}
