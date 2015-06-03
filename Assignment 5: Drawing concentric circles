@@ -10,16 +10,24 @@ public class Circles extends JPanel
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        int shift = 0;
+        int radius = 10; 
+        // Variable radius represents the radius of the inner most circle. 
+        // getWidth() and getHeight() are methods of JPanel.  
         int centerX = getWidth()/2;
         int centerY = getHeight()/2;
-           // variable shift represents moving the position of the upper-left corner of the bounding rectangle.   
-            for(int circles = 0; circles <= 11; circles++)
+           
+            for(int counter = 1; counter <= 12; counter++)
                 {
-                    shift = shift - 10;
-                    g.drawOval(centerX - (300 + shift), centerY - (300 + shift), 240 - (circles * 20), 240 - (circles * 20));
+                    
+                    g.drawOval(centerX - (counter * radius), centerY - (counter * radius), radius *2 * counter , radius * 2 * counter);
     
-            
+  // Each cycle of the for loop draws a circle. 
+  // If the for loop cycles 12 times, 12 circles are drawn. 
+  // The first argument is the x-coordinate of the upper left corner of the bounding rectangle. 
+  // The second argument is the y-coordinate of the upper left corner of the bounding rectangle. 
+  // The last two parameters represents the width and height of the bounding rectangle. 
+  // Each new circle drawn will have a different radius. 
+  // Thru a particular cycle of the for loop, how many radiuses are you substracting from the center? 
                 }
     
     
